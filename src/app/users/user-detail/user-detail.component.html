@@ -1,0 +1,54 @@
+@if (user(); as selectedUser) {
+  <section class="page-header">
+    <div class="container page-header-grid">
+      <div class="animate-fade-in-up">
+        <a class="back-link" [routerLink]="['/users']">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Retour à la liste
+        </a>
+        <span class="badge">Route dynamique</span>
+        <h1>Page détail pour `/users/{{ selectedUser.id }}`.</h1>
+        <p class="text-secondary">
+          Cette page est résolue depuis le segment dynamique `:userId`. Elle devient ensuite
+          le parent de sous-routes comme `/users/{{ selectedUser.id }}/info` et
+          `/users/{{ selectedUser.id }}/activity`.
+        </p>
+      </div>
+
+      <code-snippet title="Déclaration de route imbriquée" [code]="nestedRoutesSnippet" />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container detail-layout">
+      <div class="detail-main">
+        <user-details-card [user]="selectedUser" />
+      </div>
+
+      <aside class="nested-demo" aria-labelledby="nested-demo-title">
+        <div class="nested-copy">
+          <span class="badge">Routes imbriquées</span>
+          <h2 id="nested-demo-title">Sous-vue pilotée par l'URL</h2>
+          <p class="text-secondary">
+            Comme une page produit qui affiche “info” ou “avis”, cette zone change
+            sans quitter la page détail du user.
+          </p>
+        </div>
+
+        <nav class="nested-nav" aria-label="Routes imbriquées du détail user">
+          <a [routerLink]="['info']" routerLinkActive="active-nested-link">Info</a>
+          <a [routerLink]="['activity']" routerLinkActive="active-nested-link">Activité</a>
+          <a [routerLink]="['error-lab']" routerLinkActive="active-nested-link">Erreur locale</a>
+        </nav>
+
+        <router-outlet></router-outlet>
+      </aside>
+    </div>
+  </section>
+} @else {
+  <div class="empty-state">
+    <h2>Utilisateur introuvable</h2>
+    <p class="text-secondary">Ce profil n'existe pas.</p>
+    <a class="btn btn-primary" [routerLink]="['/users']">Retour à la liste</a>
+  </div>
+}

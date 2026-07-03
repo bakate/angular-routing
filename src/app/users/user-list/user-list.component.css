@@ -1,0 +1,224 @@
+.page-header {
+  padding: var(--space-8) 0 var(--space-6);
+  background: linear-gradient(180deg, var(--primary-50) 0%, transparent 100%);
+}
+
+.page-header h1 {
+  max-width: 720px;
+  margin: var(--space-2) 0;
+}
+
+.page-header p {
+  max-width: 660px;
+  font-size: 1.15rem;
+}
+
+.page-header-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1.15fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.section-header {
+  max-width: 820px;
+  margin-bottom: var(--space-4);
+}
+
+.section-header h2 {
+  margin: var(--space-2) 0 var(--space-1);
+  font-size: 1.8rem;
+}
+
+.route-concepts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.why-strip {
+  margin-bottom: var(--space-4);
+}
+
+.users-explainer {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  padding: var(--space-3);
+}
+
+.users-explainer h3 {
+  margin: var(--space-1) 0;
+  font-size: 1.15rem;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 480px;
+  margin-bottom: var(--space-2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.8em 1em 0.8em 2.8em;
+  font-size: 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text);
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.search-bar input:focus {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-50);
+}
+
+.results-count {
+  font-size: 0.9rem;
+  margin-bottom: var(--space-4);
+}
+
+.users-workspace {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.users-explainer {
+  position: sticky;
+  top: 88px;
+}
+
+.mini-tree {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: var(--space-2);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.mini-tree code,
+.mini-tree span {
+  border-radius: var(--radius-sm);
+  background: var(--bg-muted);
+  color: var(--text-secondary);
+  padding: 0.35rem 0.45rem;
+}
+
+.cards-column .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-card:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.user-header h3 {
+  font-size: 1.1rem;
+  margin: 0.35rem 0 0.3em;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-bio {
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.user-link {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-600);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border);
+  transition: gap var(--transition-fast);
+}
+
+.user-card:hover .user-link {
+  gap: 0.8em;
+}
+
+.user-link svg {
+  width: 16px;
+  height: 16px;
+}
+
+.route-pill {
+  display: inline-flex;
+  width: fit-content;
+  border-radius: var(--radius-sm);
+  background: var(--gray-900);
+  color: #fff;
+  padding: 0.25rem 0.45rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.72rem;
+}
+
+.empty-state {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  background: var(--bg);
+}
+
+.empty-state h3 {
+  margin-bottom: var(--space-1);
+}
+
+@media (max-width: 960px) {
+  .page-header-grid,
+  .route-concepts,
+  .users-workspace,
+  .cards-column .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .users-explainer {
+    position: static;
+  }
+}

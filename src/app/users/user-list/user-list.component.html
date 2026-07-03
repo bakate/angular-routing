@@ -1,0 +1,104 @@
+<section class="page-header">
+  <div class="container page-header-grid">
+    <div class="animate-fade-in-up">
+      <span class="badge">Lazy loaded users feature</span>
+      <h1>Liste des users, chargée à la demande.</h1>
+      <p class="text-secondary">
+        La route `/users` charge cette feature en lazy loading. Depuis cette liste,
+        chaque carte construit une URL dynamique vers la page dédiée `/users/:userId`.
+        Les users affichés viennent d'un service qui les génère avec Faker, pas
+        d'un tableau hard-codé dans le composant.
+      </p>
+    </div>
+    <code-snippet title="App route: lazy load the feature" [code]="lazyRouteSnippet" />
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Dynamic navigation</span>
+      <h2>Clique une carte : Angular navigue vers une page détail dynamique.</h2>
+      <p class="text-secondary">
+        Ici, la liste ne contient aucun outlet. Elle sert de point d'entrée. Le clic
+        redirige vers une page spécifique comme `/users/1`, qui pourra ensuite gérer ses propres nested routes.
+      </p>
+    </div>
+
+    <div class="why-strip">
+      <concept-card-list [cards]="routeWhyCards" />
+    </div>
+
+    <div class="route-concepts">
+      <code-snippet title="Feature route: declare `:userId`" [code]="nestedRouteSnippet" />
+      <code-snippet title="Card link: build the dynamic URL" [code]="cardLinkSnippet" />
+      <code-snippet title="User service: generate demo data" [code]="userFactorySnippet" />
+    </div>
+
+    <div class="search-bar">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input
+        type="text"
+        placeholder="Rechercher par nom, email ou rôle..."
+        (input)="onSearch($event)"
+      >
+    </div>
+
+    <p class="results-count text-secondary">
+      {{ filteredUsers().length }} utilisateur{{ filteredUsers().length !== 1 ? 's' : '' }} affiché{{ filteredUsers().length !== 1 ? 's' : '' }}
+    </p>
+
+    <div class="users-workspace">
+      <aside class="users-explainer" aria-label="Lecture de la route users">
+        <span class="badge">Router tree</span>
+        <h3>Ce que le Router prépare</h3>
+        <p class="text-secondary">
+          La liste correspond au chemin vide de la feature lazy-loadée. Le clic
+          sur une carte ajoute ensuite un segment `:userId`.
+        </p>
+        <div class="mini-tree">
+          <code>/users</code>
+          <span>└── :userId</span>
+          <span>    ├── info</span>
+          <span>    └── activity</span>
+        </div>
+      </aside>
+
+      <div class="users-layout">
+      <div class="cards-column">
+        @if (filteredUsers().length > 0) {
+          <div class="card-grid stagger">
+            @for (user of filteredUsers(); track user.id) {
+              <a class="card user-card" [routerLink]="[user.id]">
+                <div class="user-header">
+                  <div class="avatar" [style.background]="user.color">
+                    {{ user.initials }}
+                  </div>
+                  <div>
+                    <span class="route-pill">/users/{{ user.id }}</span>
+                    <h3>{{ user.name }}</h3>
+                    <span class="badge">{{ user.role }}</span>
+                  </div>
+                </div>
+                <p class="user-bio text-secondary">{{ user.bio }}</p>
+                <span class="user-link">
+                  Ouvrir `/users/{{ user.id }}`
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </a>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <h3>Aucun utilisateur trouvé</h3>
+            <p class="text-secondary">Essaie une autre recherche.</p>
+          </div>
+        }
+      </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+<article class="details-card">
+  <div class="details-header">
+    <div class="avatar" [style.background]="user().color">{{ user().initials }}</div>
+    <div>
+      <span class="badge">Resolved from `:userId`</span>
+      <h2>{{ user().name }}</h2>
+      <p class="text-secondary">{{ user().role }}</p>
+    </div>
+  </div>
+
+  <dl class="details-list">
+    <div>
+      <dt>Route param</dt>
+      <dd>/users/{{ user().id }}</dd>
+    </div>
+    <div>
+      <dt>Email</dt>
+      <dd>{{ user().email }}</dd>
+    </div>
+    <div>
+      <dt>Bio</dt>
+      <dd>{{ user().bio }}</dd>
+    </div>
+  </dl>
+</article>

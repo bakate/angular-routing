@@ -1,0 +1,55 @@
+.details-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.details-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.details-header h2 {
+  margin: var(--space-1) 0 0.25rem;
+  font-size: 1.5rem;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.details-list {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.details-list div {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.details-list dt {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.details-list dd {
+  margin: 0;
+  color: var(--text);
+}
