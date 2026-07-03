@@ -4,12 +4,14 @@ import {
   unsavedChangesGuard,
 } from '../auth/auth.guards';
 import { DashboardShellComponent } from './dashboard-shell.component';
+import { DashboardSettingsService } from './settings/dashboard-settings.service';
 
 export const DASHBOARD_ROUTES: Routes = [
   {
     path: '',
     component: DashboardShellComponent,
     canActivateChild: [adminChildrenGuard],
+    providers: [DashboardSettingsService],
     data: {
       title: 'Structure dashboard',
       requiresAdmin: true,

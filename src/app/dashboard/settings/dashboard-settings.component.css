@@ -37,6 +37,15 @@
   align-items: center;
 }
 
+.saved-value {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.saved-value strong {
+  color: var(--text);
+}
+
 .settings-why-grid {
   display: block;
 }

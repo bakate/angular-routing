@@ -1,49 +1,76 @@
-import { Component } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, computed, inject, signal } from '@angular/core';
+import { FormField, form } from '@angular/forms/signals';
 import { CodeSnippetComponent } from '@shared/ui/code-snippet/code-snippet.component';
 import {
   ConceptCard,
   ConceptCardListComponent,
 } from '@shared/ui/concept-card-list/concept-card-list.component';
+import { DashboardSettingsService } from './dashboard-settings.service';
+
+type DashboardSettingsFormModel = Readonly<{
+  displayName: string;
+}>;
 
 @Component({
   selector: 'dashboard-settings',
-  imports: [ReactiveFormsModule, CodeSnippetComponent, ConceptCardListComponent],
+  imports: [FormField, CodeSnippetComponent, ConceptCardListComponent],
   templateUrl: './dashboard-settings.component.html',
   styleUrls: ['./dashboard-settings.component.css'],
 })
 export class DashboardSettingsComponent {
-  protected readonly displayNameControl = new FormControl('Démo admin', {
-    nonNullable: true,
+  private readonly dashboardSettingsService = inject(DashboardSettingsService);
+
+  protected readonly savedDisplayName = this.dashboardSettingsService.displayName;
+  protected readonly settingsModel = signal<DashboardSettingsFormModel>({
+    displayName: this.savedDisplayName(),
   });
-  protected readonly settingsSnippet = `export const unsavedChangesGuard: CanDeactivateFn<CanLeaveDirtyPage> =
-  (component) => component.canDeactivate();`;
+  protected readonly settingsForm = form(this.settingsModel);
+  protected readonly displayNameField = this.settingsForm.displayName;
+  protected readonly currentDisplayName = computed(() =>
+    this.displayNameField().value()
+  );
+  protected readonly hasUnsavedChanges = computed(
+    () => this.currentDisplayName() !== this.savedDisplayName()
+  );
+  protected readonly settingsSnippet = `{
+  path: '',
+  component: DashboardShellComponent,
+  providers: [DashboardSettingsService],
+  children: [
+    {
+      path: 'settings',
+      canDeactivate: [unsavedChangesGuard],
+    },
+  ],
+}`;
   protected readonly canDeactivateSnippet = `canDeactivate(): boolean {
-  if (!this.displayNameControl.dirty) {
+  if (!this.hasUnsavedChanges()) {
     return true;
   }
 
-  return window.confirm('Quitter sans sauvegarder les modifications ?');
+  return window.confirm(
+    'Quitter sans sauvegarder ?\\nOK = quitter, Annuler = rester.'
+  );
 }`;
   protected readonly formStateItems = [
     {
       label: 'Dirty',
-      value: () => this.displayNameControl.dirty,
+      value: () => this.hasUnsavedChanges(),
       summary: "L'utilisateur a modifié le champ.",
     },
     {
       label: 'Touched',
-      value: () => this.displayNameControl.touched,
+      value: () => this.displayNameField().touched(),
       summary: 'Le champ a reçu puis perdu le focus.',
     },
     {
       label: 'Pristine',
-      value: () => this.displayNameControl.pristine,
-      summary: "Aucune modification locale n'a été faite.",
+      value: () => !this.hasUnsavedChanges(),
+      summary: 'La valeur courante correspond à la valeur sauvegardée.',
     },
     {
       label: 'Valid',
-      value: () => this.displayNameControl.valid,
+      value: () => this.displayNameField().valid(),
       summary: 'La valeur courante passe la validation.',
     },
   ] as const;
@@ -63,18 +90,19 @@ export class DashboardSettingsComponent {
   ];
 
   canDeactivate(): boolean {
-    if (!this.displayNameControl.dirty) {
+    if (!this.hasUnsavedChanges()) {
       return true;
     }
 
-    return window.confirm('Quitter sans sauvegarder les modifications ?');
+    return window.confirm(
+      'Quitter sans sauvegarder ?\nOK = quitter, Annuler = rester.'
+    );
   }
 
   protected save(): void {
-    this.displayNameControl.markAsPristine();
-  }
-
-  protected hasUnsavedChanges(): boolean {
-    return this.displayNameControl.dirty;
+    this.dashboardSettingsService.saveDisplayName({
+      displayName: this.currentDisplayName(),
+    });
+    this.displayNameField().reset(this.currentDisplayName());
   }
 }

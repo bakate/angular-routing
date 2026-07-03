@@ -11,12 +11,15 @@
 
   <label class="field">
     <span>Nom affiché</span>
-    <input type="text" [formControl]="displayNameControl">
+    <input type="text" [formField]="displayNameField">
   </label>
 
   <div class="settings-status">
     <span class="badge" [class.badge-warning]="hasUnsavedChanges()">
       {{ hasUnsavedChanges() ? 'Modifications non sauvegardées' : 'Sauvegardé' }}
+    </span>
+    <span class="saved-value">
+      Valeur sauvegardée : <strong>{{ savedDisplayName() }}</strong>
     </span>
     <button class="btn btn-primary" type="button" (click)="save()" [disabled]="!hasUnsavedChanges()">
       Sauvegarder
@@ -40,7 +43,7 @@
   <article class="deactivate-flow">
     <h3>CanDeactivate flow</h3>
     <div class="flow-line">
-      <span>dirty = {{ displayNameControl.dirty }}</span>
+      <span>dirty = {{ hasUnsavedChanges() }}</span>
       <span>↓</span>
       <span>Tentative de navigation</span>
       <span>↓</span>
@@ -48,7 +51,9 @@
       <span>↓</span>
       <span>window.confirm()</span>
       <span>↓</span>
-      <span>La navigation continue ou reste ici</span>
+      <span>OK = quitter sans sauvegarder</span>
+      <span>↓</span>
+      <span>Annuler = rester sur la page</span>
     </div>
   </article>
 
