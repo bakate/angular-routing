@@ -1,0 +1,39 @@
+<section class="dashboard-shell">
+  <div class="container dashboard-header">
+    <div>
+      <span class="badge">Dashboard admin</span>
+      <h1>Feature protégée par guards.</h1>
+      <p class="text-secondary">
+        `/dashboard` est protégé par `CanActivate`. Ses routes enfants sont ensuite
+        protégées par `CanActivateChild`, ce qui évite de répéter la même règle sur
+        `/dashboard/home`, `/dashboard/users` et `/dashboard/settings`.
+      </p>
+      <p class="text-secondary role-line">Rôle courant : <strong>{{ role() ?? 'anonyme' }}</strong></p>
+    </div>
+
+    <code-snippet title="Protection des routes enfants du dashboard" [code]="childGuardSnippet" />
+  </div>
+
+  <div class="container guard-summary">
+    <concept-card-list [cards]="guardWhyCards" />
+  </div>
+
+  <div class="container dashboard-body">
+    <aside class="dashboard-nav" aria-label="Routes du dashboard">
+      <a [routerLink]="['/dashboard/home']" routerLinkActive="active-dashboard-link">Accueil</a>
+      <a [routerLink]="['/dashboard/users']" routerLinkActive="active-dashboard-link">Users</a>
+      <a [routerLink]="['/dashboard/settings']" routerLinkActive="active-dashboard-link">Paramètres</a>
+      <a [routerLink]="['/reports']" routerLinkActive="active-dashboard-link">Rapports</a>
+    </aside>
+
+    <div class="dashboard-content-frame">
+      <div class="content-label">
+        <span class="badge">Contenu protégé</span>
+        <p class="text-secondary">Le composant ci-dessous est rendu dans le RouterOutlet du dashboard.</p>
+      </div>
+      <div class="dashboard-outlet">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section>

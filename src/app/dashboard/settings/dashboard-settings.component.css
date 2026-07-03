@@ -1,0 +1,118 @@
+.settings-card {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.settings-card h2 {
+  margin: var(--space-1) 0;
+  font-size: 1.7rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.45rem;
+  max-width: 420px;
+  font-weight: 700;
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font: inherit;
+  padding: 0.8rem 1rem;
+}
+
+.field input:focus {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 0 3px var(--primary-50);
+  outline: none;
+}
+
+.settings-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.settings-why-grid {
+  display: block;
+}
+
+.form-state-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.state-tile {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  padding: var(--space-2);
+}
+
+.state-tile span {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.state-tile strong {
+  display: block;
+  margin: 0.35rem 0;
+  color: var(--text);
+  font-size: 1.35rem;
+}
+
+.state-tile p {
+  font-size: 0.85rem;
+}
+
+.state-active {
+  border-color: var(--primary-300);
+  background: var(--primary-50);
+}
+
+.deactivate-flow {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2);
+}
+
+.deactivate-flow h3 {
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.flow-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+
+.flow-line span {
+  border-radius: var(--radius-sm);
+  background: var(--bg-muted);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.35rem 0.55rem;
+}
+
+.snippet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+@media (max-width: 860px) {
+  .form-state-grid,
+  .snippet-grid {
+    grid-template-columns: 1fr;
+  }
+}

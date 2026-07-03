@@ -1,0 +1,65 @@
+<section class="section">
+  <div class="container contributor-layout">
+    <div>
+      <span class="badge badge-success">Espace contributor</span>
+      <h1>Espace contributor.</h1>
+      <p class="text-secondary">
+        Un contributor connecté est redirigé ici s'il tente d'ouvrir `/dashboard`.
+        C'est volontaire : `CanActivate` peut renvoyer un `UrlTree` au lieu de
+        naviguer impérativement.
+      </p>
+    </div>
+
+    <div class="card action-card">
+      <h2>Tester le routing</h2>
+      <p class="text-secondary">Rôle courant : <strong>{{ role() ?? 'anonyme' }}</strong></p>
+      <div class="action-row">
+        <a class="btn btn-secondary" [routerLink]="['/dashboard']">Ouvrir `/dashboard`</a>
+        <a class="btn btn-primary" [routerLink]="['/reports']">Ouvrir `/reports`</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (showCanActivateModal()) {
+  <div class="modal-backdrop" role="presentation" (click)="closeGuardModal()">
+    <section
+      class="guard-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="can-activate-title"
+      (click)="$event.stopPropagation()"
+    >
+      <div class="modal-header">
+        <span class="badge badge-warning">CanActivate</span>
+        <button
+          class="close-button"
+          type="button"
+          aria-label="Fermer l'explication"
+          (click)="closeGuardModal()"
+        >
+          ×
+        </button>
+      </div>
+
+      <h2 id="can-activate-title">Accès refusé avant activation de `/dashboard`.</h2>
+      <p class="text-secondary">
+        Tu es connecté avec le rôle <strong>contributor</strong>. Le guard
+        `adminCanActivateGuard` s'exécute avant que la route `/dashboard` soit
+        activée. Comme le rôle attendu est <strong>admin</strong>, il retourne un
+        `UrlTree` vers `/contributor` au lieu de laisser Angular afficher le dashboard.
+      </p>
+
+      <pre><code>{{ canActivateSnippet }}</code></pre>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" (click)="switchToAdmin()">
+          Basculer en admin
+        </button>
+        <button class="btn btn-secondary" type="button" (click)="closeGuardModal()">
+          Continuer contributor
+        </button>
+      </div>
+    </section>
+  </div>
+}

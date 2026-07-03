@@ -1,0 +1,30 @@
+<section class="page-shell">
+  <div class="container page-grid">
+    <div class="copy-block">
+      <span class="badge">Authentification simulée</span>
+      <h1>Choisis un rôle pour tester les guards.</h1>
+      <p class="text-secondary">
+        Cette page ne simule pas un backend. Elle écrit simplement le rôle dans
+        `AuthService`, puis les guards utilisent ce rôle pour décider quelle route
+        peut être activée ou matchée.
+      </p>
+
+      <div class="role-actions" aria-label="Choisir un rôle">
+        <button class="btn btn-primary" type="button" (click)="loginWithRole('admin')">
+          Se connecter en admin
+        </button>
+        <button class="btn btn-secondary" type="button" (click)="loginWithRole('contributor')">
+          Se connecter en contributor
+        </button>
+      </div>
+
+      <p class="current-role text-secondary">
+        Rôle courant : <strong>{{ currentRole() ?? 'anonyme' }}</strong>
+      </p>
+
+      <a class="topic-link" [routerLink]="['/reports']">Tester `/reports`</a>
+    </div>
+
+    <code-snippet title="État du rôle dans AuthService" [code]="loginSnippet" />
+  </div>
+</section>

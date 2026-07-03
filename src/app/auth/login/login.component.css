@@ -1,0 +1,42 @@
+.page-shell {
+  padding: var(--space-8) 0;
+  background: linear-gradient(180deg, var(--primary-50) 0%, transparent 100%);
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1.15fr);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.copy-block h1 {
+  margin: var(--space-2) 0;
+  max-width: 720px;
+}
+
+.copy-block p {
+  max-width: 680px;
+  font-size: 1.08rem;
+}
+
+.role-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+.current-role {
+  margin-bottom: var(--space-2);
+}
+
+.topic-link {
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+  }
+}

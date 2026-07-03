@@ -1,0 +1,59 @@
+<article class="card settings-card">
+  <div>
+    <span class="badge badge-warning">CanDeactivate</span>
+    <h2>Protège la sortie d'un formulaire modifié.</h2>
+    <p class="text-secondary">
+      Modifie le champ, puis clique sur une autre route du dashboard. Le guard
+      appelle `canDeactivate()` sur le composant et demande confirmation si le
+      formulaire est dirty.
+    </p>
+  </div>
+
+  <label class="field">
+    <span>Nom affiché</span>
+    <input type="text" [formControl]="displayNameControl">
+  </label>
+
+  <div class="settings-status">
+    <span class="badge" [class.badge-warning]="hasUnsavedChanges()">
+      {{ hasUnsavedChanges() ? 'Modifications non sauvegardées' : 'Sauvegardé' }}
+    </span>
+    <button class="btn btn-primary" type="button" (click)="save()" [disabled]="!hasUnsavedChanges()">
+      Sauvegarder
+    </button>
+  </div>
+
+  <div class="settings-why-grid">
+    <concept-card-list [cards]="canDeactivateWhyCards" />
+  </div>
+
+  <div class="form-state-grid" aria-label="Form state">
+    @for (item of formStateItems; track item.label) {
+      <article class="state-tile" [class.state-active]="item.value()">
+        <span>{{ item.label }}</span>
+        <strong>{{ item.value() }}</strong>
+        <p class="text-secondary">{{ item.summary }}</p>
+      </article>
+    }
+  </div>
+
+  <article class="deactivate-flow">
+    <h3>CanDeactivate flow</h3>
+    <div class="flow-line">
+      <span>dirty = {{ displayNameControl.dirty }}</span>
+      <span>↓</span>
+      <span>Tentative de navigation</span>
+      <span>↓</span>
+      <span>CanDeactivate</span>
+      <span>↓</span>
+      <span>window.confirm()</span>
+      <span>↓</span>
+      <span>La navigation continue ou reste ici</span>
+    </div>
+  </article>
+
+  <div class="snippet-grid">
+    <code-snippet title="Guard" [code]="settingsSnippet" />
+    <code-snippet title="Contrat du composant" [code]="canDeactivateSnippet" />
+  </div>
+</article>
