@@ -1,0 +1,55 @@
+<section class="section reports-section">
+  <div class="container reports-grid">
+    <div>
+      <span class="badge">CanMatch admin</span>
+      <h1>Rapports admin.</h1>
+      <p class="text-secondary">
+        Tu es sur `/reports`, mais Angular a choisi le composant admin parce que
+        `adminReportsCanMatchGuard` a retourné `true`.
+      </p>
+      <p class="text-secondary">
+        Si ce guard retourne `false`, Angular ne bloque pas directement : il essaie
+        la route suivante avec le même `path`.
+      </p>
+      <a class="btn btn-secondary" [routerLink]="['/dashboard/home']">Retour au dashboard</a>
+    </div>
+
+    <code-snippet title="Même URL, route sélectionnée différente" [code]="canMatchSnippet" />
+  </div>
+
+  <div class="container report-comparison">
+    <article class="comparison-column active-comparison animated-match-step">
+      <span class="badge">Route sélectionnée</span>
+      <h2>reports (admin) <span class="match-status" aria-hidden="true">✅</span></h2>
+      <p class="text-secondary">`adminReportsCanMatchGuard` retourne `true`.</p>
+    </article>
+    <article class="comparison-column">
+      <span class="badge">Route ignorée</span>
+      <h2>reports (contributor)</h2>
+      <p class="text-secondary">Angular n'a pas besoin d'essayer cette définition.</p>
+    </article>
+  </div>
+
+  <div class="container why-grid">
+    <concept-card-list [cards]="whyCards" />
+  </div>
+
+  <div class="container match-timeline">
+    <article class="timeline-card">
+      <h2>Timeline de matching</h2>
+      <div class="timeline-steps">
+        @for (step of matchSteps; track step) {
+          <span
+            [class.selected-step]="step.includes('Composant sélectionné') || step === 'true'"
+            [class.animated-match-chip]="step === 'reports (admin)' || step === 'true'"
+          >
+            {{ step }}
+          </span>
+          @if (!$last) {
+            <strong>↓</strong>
+          }
+        }
+      </div>
+    </article>
+  </div>
+</section>

@@ -1,0 +1,62 @@
+<section class="section reports-section">
+  <div class="container reports-grid">
+    <div>
+      <span class="badge badge-success">CanMatch contributor</span>
+      <h1>Rapports contributor.</h1>
+      <p class="text-secondary">
+        Même URL : `/reports`. Cette fois, la route admin n'a pas matché, donc
+        Angular a continué et sélectionné la route contributor.
+      </p>
+      <p class="text-secondary">
+        C'est la différence importante avec `CanActivate` : `CanMatch` décide si
+        une définition de route peut être sélectionnée.
+      </p>
+      <a class="btn btn-secondary" [routerLink]="['/contributor']">Retour à l'espace contributor</a>
+    </div>
+
+    <code-snippet title="Matcher contributor" [code]="canMatchSnippet" />
+  </div>
+
+  <div class="container report-comparison">
+    <article
+      class="comparison-column rejected-comparison"
+      [class.animated-match-step]="activeMatchIndex() === 0"
+    >
+      <span class="badge badge-error">Route ignorée</span>
+      <h2>reports (admin) <span class="match-status" aria-hidden="true">❌</span></h2>
+      <p class="text-secondary">`adminReportsCanMatchGuard` retourne `false`.</p>
+    </article>
+    <article
+      class="comparison-column active-comparison"
+      [class.animated-match-step]="activeMatchIndex() === 1"
+    >
+      <span class="badge badge-success">Route sélectionnée</span>
+      <h2>reports (contributor) <span class="match-status" aria-hidden="true">✅</span></h2>
+      <p class="text-secondary">Angular continue puis sélectionne cette définition.</p>
+    </article>
+  </div>
+
+  <div class="container why-grid">
+    <concept-card-list [cards]="whyCards" />
+  </div>
+
+  <div class="container match-timeline">
+    <article class="timeline-card">
+      <h2>Timeline de matching</h2>
+      <div class="timeline-steps">
+        @for (step of matchSteps; track step + $index) {
+          <span
+            [class.rejected-step]="step === 'false'"
+            [class.selected-step]="step.includes('Composant sélectionné') || step === 'true'"
+            [class.animated-match-chip]="isActiveTimelineStep({ step })"
+          >
+            {{ step }}
+          </span>
+          @if (!$last) {
+            <strong>↓</strong>
+          }
+        }
+      </div>
+    </article>
+  </div>
+</section>
