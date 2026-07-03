@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Angular Router Explorer">
+  <defs>
+    <linearGradient id="brand-gradient" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3374ff"/>
+      <stop offset="1" stop-color="#1842e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#brand-gradient)"/>
+  <path
+    d="M19.2 47 29.6 17h4.8L44.8 47h-6.4l-1.9-6.1h-9l-1.9 6.1h-6.4Zm9.9-11.3h5.8L32 26.2l-2.9 9.5Z"
+    fill="#fff"
+  />
+</svg>
