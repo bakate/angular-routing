@@ -1,0 +1,83 @@
+.page-header {
+  padding: var(--space-8) 0 var(--space-6);
+  background: linear-gradient(180deg, var(--primary-50) 0%, transparent 100%);
+}
+
+.page-header h1 {
+  margin: var(--space-2) 0;
+  max-width: 720px;
+}
+
+.page-header p {
+  max-width: 680px;
+  font-size: 1.15rem;
+}
+
+.architecture-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.architecture-intro h2 {
+  margin: var(--space-2) 0;
+}
+
+.goal-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.goal-list span {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 700;
+  padding: 0.55rem 0.75rem;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.note-card,
+.project-positioning {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  padding: var(--space-4);
+}
+
+.note-card h2,
+.project-positioning h2 {
+  margin-bottom: var(--space-1);
+  font-size: 1.25rem;
+}
+
+.note-label {
+  margin: var(--space-3) 0 var(--space-1);
+  color: var(--primary-600);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.project-positioning {
+  max-width: 760px;
+}
+
+.project-positioning h2 {
+  margin-top: var(--space-2);
+}
+
+@media (max-width: 768px) {
+  .architecture-intro,
+  .notes-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,58 @@
+<section class="page-header">
+  <div class="container">
+    <div class="animate-fade-in-up">
+      <span class="badge">Notes d'architecture</span>
+      <h1>Les décisions techniques du projet.</h1>
+      <p class="text-secondary">
+        Cette démo n'essaie pas de reproduire une application métier. Elle rend
+        observable le fonctionnement interne d'Angular Router à travers des cas concrets.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container architecture-intro">
+    <div>
+      <span class="badge">Objectifs de la démo</span>
+      <h2>Ce que le projet veut démontrer.</h2>
+      <p class="text-secondary">
+        Les sujets ci-dessous sont souvent difficiles à visualiser dans une vraie app,
+        parce qu'ils sont dispersés entre configuration de routes, guards, outlets et
+        état de navigation.
+      </p>
+    </div>
+
+    <div class="goal-list" aria-label="Sujets couverts">
+      @for (goal of demoGoals; track goal) {
+        <span>{{ goal }}</span>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container notes-grid">
+    @for (note of routerNotes; track note.title) {
+      <article class="note-card">
+        <h2>{{ note.title }}</h2>
+        <p class="note-label">Pourquoi ?</p>
+        <p class="text-secondary">{{ note.why }}</p>
+        <p class="note-label">Impact</p>
+        <p class="text-secondary">{{ note.impact }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section section-subtle">
+  <div class="container project-positioning">
+    <span class="badge">Positionnement</span>
+    <h2>Ce projet n'est pas un clone.</h2>
+    <p class="text-secondary">
+      Il a été conçu comme une ressource pédagogique courte : comprendre comment
+      Angular sélectionne une route, exécute les guards, active un composant et rend
+      le résultat dans un RouterOutlet.
+    </p>
+  </div>
+</section>

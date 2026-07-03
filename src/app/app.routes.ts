@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import { ArchitectureComponent } from './architecture/architecture.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {
   adminCanActivateGuard,
@@ -23,9 +23,9 @@ export const routes: Routes = [
    
   },
   {
-    path: 'about',
-    component: AboutComponent,
-  data: { title: 'Notes', topic: 'notes de routing' },
+    path: 'architecture',
+    component: ArchitectureComponent,
+    data: { title: 'Architecture', topic: 'décisions de routing' },
   },
   {
     path: 'login',
