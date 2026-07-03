@@ -1,0 +1,90 @@
+.debug-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.debug-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.decision-flow {
+  display: grid;
+  gap: 0.45rem;
+  border-top: 1px solid var(--border);
+  padding: var(--space-2);
+}
+
+.decision-flow code {
+  width: fit-content;
+  border-radius: var(--radius-sm);
+  background: var(--gray-900);
+  color: var(--gray-50);
+  padding: 0.25rem 0.45rem;
+}
+
+.flow-arrow {
+  color: var(--primary-600);
+  font-weight: 800;
+}
+
+.decision-flow p,
+.empty-copy {
+  margin-top: var(--space-1);
+}
+
+.decision-history {
+  display: grid;
+  gap: 0.5rem;
+  padding: var(--space-2);
+}
+
+.current-decision {
+  background: var(--primary-50);
+}
+
+.decision-history h3 {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+}
+
+.history-row small {
+  grid-column: 1 / -1;
+  color: var(--text-secondary);
+}
+
+.history-toggle {
+  width: calc(100% - var(--space-4));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--primary-700);
+  cursor: pointer;
+  font-weight: 800;
+  margin: 0 var(--space-2) var(--space-2);
+  padding: 0.65rem;
+}
+
+.empty-copy {
+  padding: var(--space-2);
+}

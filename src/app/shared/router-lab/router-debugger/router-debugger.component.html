@@ -1,0 +1,86 @@
+<article class="debugger-card">
+  <div class="debugger-header">
+    <span>Inspecteur du Router</span>
+    <span class="badge">État live du Router</span>
+  </div>
+
+  <div class="debugger-grid">
+    <section>
+      <h3>URL courante</h3>
+      <code>{{ snapshot().currentUrl }}</code>
+    </section>
+
+    <section>
+      <h3>Composant courant</h3>
+      <code>{{ snapshot().currentComponent }}</code>
+      <p class="text-secondary">{{ snapshot().routeTitle }}</p>
+    </section>
+
+    <section>
+      <h3>Paramètres</h3>
+      <pre><code>{{ formattedParams() }}</code></pre>
+    </section>
+
+    <section>
+      <h3>Paramètres de requête</h3>
+      <pre><code>{{ formattedQueryParams() }}</code></pre>
+    </section>
+
+    <section>
+      <h3>Fragment</h3>
+      <code>{{ snapshot().fragment ?? 'null' }}</code>
+    </section>
+
+    <section>
+      <h3>Data de route</h3>
+      <pre><code>{{ formattedData() }}</code></pre>
+    </section>
+  </div>
+
+  <section class="snapshot-section">
+    <h3>ActivatedRoute → Snapshot → Signals</h3>
+    <div class="snapshot-flow">
+      <span>ActivatedRoute</span>
+      <strong>↓</strong>
+      <span>snapshot</span>
+      <strong>↓</strong>
+      <code>params: {{ formattedParams() }}</code>
+      <code>query: {{ formattedQueryParams() }}</code>
+      <code>data: {{ formattedData() }}</code>
+      <strong>↓</strong>
+      <span>signal affiché dans la page</span>
+    </div>
+  </section>
+
+  <section class="tree-section">
+    <h3>Arbre des routes activées</h3>
+    <ng-container
+      [ngTemplateOutlet]="routeTreeTemplate"
+      [ngTemplateOutletContext]="{ node: snapshot().activatedRouteTree, level: 0 }"
+    />
+  </section>
+
+  <section class="tree-section">
+    <h3>Hiérarchie des RouterOutlet</h3>
+    <div class="outlet-list">
+      @for (outlet of snapshot().outlets; track outlet) {
+        <code>{{ outlet }}</code>
+      }
+    </div>
+  </section>
+</article>
+
+<ng-template #routeTreeTemplate let-node="node" let-level="level">
+  <div class="tree-node" [style.padding-left.rem]="level * 1.25">
+    <span class="branch" aria-hidden="true">{{ level === 0 ? '' : '└──' }}</span>
+    <strong>{{ node.label }}</strong>
+    <span class="component-name">{{ node.component }}</span>
+  </div>
+
+  @for (childNode of node.children; track childNode.label + childNode.component) {
+    <ng-container
+      [ngTemplateOutlet]="routeTreeTemplate"
+      [ngTemplateOutletContext]="{ node: childNode, level: level + 1 }"
+    />
+  }
+</ng-template>

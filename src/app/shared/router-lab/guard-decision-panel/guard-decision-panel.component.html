@@ -1,0 +1,49 @@
+<article class="debug-card">
+  <div class="debug-card-header">
+    <span>Raisonnement du guard</span>
+    <span class="badge badge-warning">Décision visible</span>
+  </div>
+
+  @if (currentNavigationGuardDecisions().length > 0) {
+    <div class="decision-history current-decision">
+      <h3>Navigation actuelle</h3>
+      @for (guardCheck of currentNavigationGuardDecisions(); track guardCheck.guardName + guardCheck.route + guardCheck.returned) {
+        <div class="history-row">
+          <span>{{ guardCheck.guardName }}</span>
+          <code>{{ guardCheck.result }}</code>
+          <small>{{ guardCheck.returned }}</small>
+        </div>
+      }
+    </div>
+
+    @if (guardDecision(); as decision) {
+      <div class="decision-flow">
+        <strong>Décision active</strong>
+        <code>{{ decision.route }}</code>
+        <span>{{ decision.kind }} · {{ decision.condition }} · {{ decision.result }}</span>
+        <p class="text-secondary">{{ decision.note }}</p>
+      </div>
+    }
+
+    <button class="history-toggle" type="button" (click)="toggleHistory()">
+      {{ showHistory() ? 'Masquer l’historique' : 'Voir l’historique' }}
+    </button>
+
+    @if (showHistory()) {
+      <div class="decision-history">
+        <h3>Historique</h3>
+        @for (guardCheck of guardDecisions(); track guardCheck.guardName + guardCheck.route + guardCheck.returned) {
+          <div class="history-row">
+            <span>{{ guardCheck.guardName }}</span>
+            <code>{{ guardCheck.result }}</code>
+            <small>{{ guardCheck.returned }}</small>
+          </div>
+        }
+      </div>
+    }
+  } @else {
+    <p class="empty-copy text-secondary">
+      Aucun guard n'a pris de décision pendant cette navigation.
+    </p>
+  }
+</article>

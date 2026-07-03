@@ -1,0 +1,50 @@
+.debug-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+  padding-bottom: var(--space-2);
+}
+
+.debug-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.route-node {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 32px;
+  padding-right: var(--space-2);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.88rem;
+}
+
+.route-node a,
+.route-node span {
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.35rem;
+}
+
+.route-node a:hover,
+.active-route-node {
+  background: var(--primary-50);
+  color: var(--primary-700);
+  font-weight: 800;
+}
+
+.branch {
+  color: var(--text-muted);
+}

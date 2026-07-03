@@ -1,0 +1,31 @@
+<article class="debug-card">
+  <div class="debug-card-header">
+    <span>Carte des routes</span>
+    <span class="badge">Modèle mental</span>
+  </div>
+
+  <ng-container
+    [ngTemplateOutlet]="routeNodeTemplate"
+    [ngTemplateOutletContext]="{ node: routeMap(), level: 0 }"
+  />
+</article>
+
+<ng-template #routeNodeTemplate let-node="node" let-level="level">
+  <div class="route-node" [style.padding-left.rem]="level * 1.25">
+    <span class="branch" aria-hidden="true">{{ level === 0 ? '' : '└──' }}</span>
+    @if (canNavigate(node)) {
+      <a [routerLink]="[node.path]" [class.active-route-node]="isActive(node)">
+        {{ node.label }}
+      </a>
+    } @else {
+      <span [class.active-route-node]="isActive(node)">{{ node.label }}</span>
+    }
+  </div>
+
+  @for (childNode of node.children; track childNode.path) {
+    <ng-container
+      [ngTemplateOutlet]="routeNodeTemplate"
+      [ngTemplateOutletContext]="{ node: childNode, level: level + 1 }"
+    />
+  }
+</ng-template>

@@ -1,0 +1,92 @@
+.debug-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+.debug-card-header {
+  padding: var(--space-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.replay-button {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.9rem 1rem;
+}
+
+.replay-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  min-width: 0;
+  list-style: none;
+  padding: var(--space-2);
+  overflow: hidden;
+}
+
+.replay-list li {
+  display: flex;
+  min-width: 130px;
+  gap: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.step-index {
+  display: grid;
+  place-items: center;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--bg-muted);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.replay-list p {
+  margin-top: 0.25rem;
+  font-size: 0.88rem;
+}
+
+.active-replay-step {
+  border-color: var(--primary-300);
+  background: var(--primary-50);
+}
+
+.completed-replay-step {
+  border-color: var(--success-500);
+  background: var(--success-50);
+}
+
+.completed-replay-step .step-index {
+  background: var(--success-500);
+  color: #fff;
+}
+
+.active-replay-step .step-index {
+  background: var(--primary-600);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .debug-card-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .replay-list {
+    grid-template-columns: 1fr;
+  }
+
+  .replay-list li {
+    min-width: 0;
+  }
+}
