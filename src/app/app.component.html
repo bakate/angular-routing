@@ -1,0 +1,45 @@
+<navbar />
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+
+  <section class="router-lab-section" aria-labelledby="router-lab-title">
+    <div class="container">
+      <button class="inspector-toggle" type="button" (click)="toggleInspector()">
+        <span>{{ inspectorOpen() ? "▲ Masquer l'inspection" : '▼ Inspecter cette navigation' }}</span>
+        <small>Voir ce que le Router Angular vient de faire</small>
+      </button>
+
+      @if (inspectorOpen()) {
+        <div class="router-lab-header">
+          <span class="badge">Internes du Router</span>
+          <h2 id="router-lab-title">Inspection contextuelle.</h2>
+          <p class="text-secondary">
+            Voici exactement ce que le Router Angular vient de faire pour afficher cette page.
+          </p>
+        </div>
+
+        <div class="router-lab-grid">
+          <div class="router-lab-main">
+            @if (showReplay()) {
+              <step-replay />
+            }
+            @if (showDebugger()) {
+              <router-debugger />
+            }
+          </div>
+          <div class="router-lab-side">
+            @if (showRouteMap()) {
+              <route-map />
+            }
+            @if (showGuards()) {
+              <guard-decision-panel />
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+</main>
+
+<page-footer />

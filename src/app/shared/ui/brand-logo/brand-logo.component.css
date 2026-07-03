@@ -1,0 +1,39 @@
+:host {
+  display: inline-flex;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.brand-logo-dark {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.brand-logo-mark {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 920px) {
+  .brand-logo:not(.brand-logo-dark) .brand-logo-text {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+<footer class="app-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <brand-logo tone="dark" />
+    </div>
+    <div class="footer-live-grid" aria-label="État courant du Router">
+      <div>
+        <span>URL courante</span>
+        <strong>{{ snapshot().currentUrl }}</strong>
+      </div>
+      <div>
+        <span>Composant activé</span>
+        <strong>{{ snapshot().currentComponent }}</strong>
+      </div>
+      <div>
+        <span>Guard courant</span>
+        <strong>{{ guardDecision()?.guardName ?? 'aucun' }}</strong>
+      </div>
+      <div>
+        <span>Navigation</span>
+        <strong>#{{ snapshot().navigationId }}</strong>
+      </div>
+    </div>
+  </div>
+</footer>

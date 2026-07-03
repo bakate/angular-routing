@@ -1,0 +1,35 @@
+<section class="page-header">
+  <div class="container">
+    <div class="animate-fade-in-up">
+      <span class="badge">Notes techniques</span>
+      <h1>Ce qu'un recruteur technique doit retenir.</h1>
+      <p class="text-secondary">
+        Cette page sert de mémo pour accompagner le projet Netlify et ton futur post LinkedIn.
+        Elle explique les choix qui ont une vraie valeur de discussion.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container notes-grid">
+    @for (note of routerNotes; track note.title) {
+      <article class="note-card">
+        <h2>{{ note.title }}</h2>
+        <p class="text-secondary">{{ note.description }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section section-subtle">
+  <div class="container post-card">
+    <span class="badge">Angle LinkedIn</span>
+    <h2>Le bon message</h2>
+    <p class="text-secondary">
+      Ne présente pas ça comme “j'ai fait une app Angular”. Présente-le comme :
+      “j'ai construit une démo courte pour expliquer les décisions de routing Angular
+      modernes : lazy standalone routes, canMatch, nested routes, route params et canDeactivate”.
+    </p>
+  </div>
+</section>

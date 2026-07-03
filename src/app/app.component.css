@@ -1,0 +1,84 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-main {
+  flex: 1;
+}
+.router-lab-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-subtle);
+  padding: var(--space-4) 0;
+}
+
+.router-lab-section .container {
+  max-width: var(--container-wide);
+}
+
+.inspector-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  border: 1px solid var(--primary-200);
+  border-radius: var(--radius-md);
+  background: var(--primary-600);
+  color: #fff;
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  box-shadow: var(--shadow-md);
+}
+
+.inspector-toggle span {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.inspector-toggle small {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.9rem;
+}
+
+.router-lab-header {
+  max-width: 760px;
+  margin: var(--space-4) 0;
+}
+
+.router-lab-header h2 {
+  margin: var(--space-2) 0 var(--space-1);
+}
+
+.router-lab-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.router-lab-main,
+.router-lab-side {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.router-lab-main {
+  overflow: hidden;
+}
+
+@media (max-width: 1040px) {
+  .router-lab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .inspector-toggle {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

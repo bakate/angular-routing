@@ -1,0 +1,39 @@
+<header class="app-header">
+  <div class="header-inner">
+    <a class="brand" [routerLink]="['/home']" (click)="closeMobileMenu()">
+      <brand-logo />
+    </a>
+
+    <button
+      class="menu-toggle"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-label="Ouvrir le menu"
+    >
+      <span [class.open]="mobileMenuOpen()"></span>
+      <span [class.open]="mobileMenuOpen()"></span>
+      <span [class.open]="mobileMenuOpen()"></span>
+    </button>
+
+    <div class="nav-panel" [class.open]="mobileMenuOpen()">
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a [routerLink]="['/home']" routerLinkActive="active-route" (click)="closeMobileMenu()">Accueil</a>
+        <a [routerLink]="['/users']" routerLinkActive="active-route" (click)="closeMobileMenu()">Utilisateurs</a>
+        <a [routerLink]="['/dashboard']" routerLinkActive="active-route" (click)="closeMobileMenu()">Dashboard</a>
+        <a [routerLink]="['/reports']" routerLinkActive="active-route" (click)="closeMobileMenu()">Analytiques</a>
+        <a [routerLink]="['/about']" routerLinkActive="active-route" (click)="closeMobileMenu()">Notes</a>
+      </nav>
+
+      <div class="auth-actions">
+        @if (authService.isAuthenticated()) {
+          <span class="role-chip">{{ authService.role() }}</span>
+          <button class="btn btn-ghost btn-auth" (click)="logout(); closeMobileMenu()">Se déconnecter</button>
+        } @else if (isLoginRoute()) {
+          <span class="role-chip role-chip-muted">Choisis un rôle</span>
+        } @else {
+          <button class="btn btn-primary btn-auth" (click)="openLogin(); closeMobileMenu()">Choisir un rôle</button>
+        }
+      </div>
+    </div>
+  </div>
+</header>

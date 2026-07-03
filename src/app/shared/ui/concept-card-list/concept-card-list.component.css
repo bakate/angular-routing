@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.concept-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.concept-card-list article {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  padding: var(--space-3);
+}
+
+.concept-card-list h3 {
+  margin-bottom: var(--space-1);
+  font-size: 1.15rem;
+}
+
+@media (max-width: 960px) {
+  .concept-card-list {
+    grid-template-columns: 1fr;
+  }
+}

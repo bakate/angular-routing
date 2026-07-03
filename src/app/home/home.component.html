@@ -1,0 +1,77 @@
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content animate-fade-in-up">
+      <span class="badge">Angular Router guide</span>
+      <h1>Visualise enfin ce que fait Angular Router après chaque navigation.</h1>
+      <p class="hero-subtitle">
+        Ne lis plus seulement la configuration des routes. Observe comment Angular découpe
+        l'URL, choisit une route, vérifie les guards, active un outlet et affiche le composant.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" [routerLink]="['/users']">Explorer la feature Users</a>
+        <a class="btn btn-secondary" [routerLink]="['/login']">Tester les guards</a>
+      </div>
+    </div>
+
+    <article class="code-panel" aria-labelledby="route-map-title">
+      <div class="code-panel-header">
+        <span id="route-map-title">Routes, outlet, links</span>
+        <span class="badge">Modèle mental</span>
+      </div>
+      <pre><code>{{ routerEssentialsSnippet }}</code></pre>
+    </article>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Essentiel</span>
+      <h2>Les pièces à retenir avant les détails.</h2>
+      <p class="text-secondary">
+        La documentation Angular commence par les routes, les outlets et les links.
+        Cette démo ajoute ensuite les guards, parce qu'ils deviennent essentiels dès
+        qu'une navigation dépend de l'état utilisateur.
+      </p>
+    </div>
+
+    <div class="primitive-grid">
+      @for (primitive of routerPrimitives; track primitive.name) {
+        <article class="primitive-card">
+          <h3>{{ primitive.name }}</h3>
+          <p class="text-secondary">{{ primitive.summary }}</p>
+          <pre><code>{{ primitive.code }}</code></pre>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section-subtle">
+  <div class="container">
+    <div class="section-header">
+      <span class="badge">Parcours</span>
+      <h2>Comment lire cette démo.</h2>
+      <p class="text-secondary">
+        Suis le flux normal d'une application : charger une feature, filtrer une liste,
+        naviguer vers un élément précis, afficher une sous-vue, puis protéger certaines
+        routes selon le rôle courant.
+      </p>
+    </div>
+
+    <div class="step-list">
+      @for (step of demoSteps; track step.order) {
+        <article class="step-card">
+          <div class="step-copy">
+            <span class="step-order">{{ step.order }}</span>
+            <span class="route-pill">{{ step.route }}</span>
+            <h3>{{ step.title }}</h3>
+            <p class="text-secondary">{{ step.description }}</p>
+            <a class="topic-link" [routerLink]="[step.route]">{{ step.actionLabel }}</a>
+          </div>
+          <pre><code>{{ step.code }}</code></pre>
+        </article>
+      }
+    </div>
+  </div>
+</section>
