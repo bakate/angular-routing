@@ -6,8 +6,283 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: #111827;
+      background: #fff;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .app-skeleton {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #eef5ff 0, #fff 420px);
+    }
+
+    .skeleton-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .skeleton-header {
+      height: 64px;
+      border-bottom: 1px solid #e5e7eb;
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .skeleton-header .skeleton-container,
+    .skeleton-brand,
+    .skeleton-nav,
+    .skeleton-actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .skeleton-header .skeleton-container {
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .skeleton-brand {
+      gap: 0.75rem;
+      font-weight: 750;
+    }
+
+    .skeleton-logo {
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #1f54f5;
+      color: #fff;
+      font-weight: 750;
+    }
+
+    .skeleton-nav,
+    .skeleton-actions {
+      gap: 0.75rem;
+    }
+
+    .skeleton-block {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #e5e7eb;
+    }
+
+    .skeleton-block::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.72), transparent);
+      animation: shimmer 1.4s infinite;
+    }
+
+    .skeleton-nav .skeleton-block {
+      width: 88px;
+      height: 28px;
+    }
+
+    .skeleton-hero,
+    .skeleton-section {
+      padding: 4rem 0;
+    }
+
+    .skeleton-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(360px, 1.15fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .skeleton-stack {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .pill {
+      width: 160px;
+      height: 30px;
+      border-radius: 999px;
+      background: #d9e8ff;
+    }
+
+    .title { height: 52px; }
+    .text { height: 18px; max-width: 620px; }
+    .w-84 { width: 84%; }
+    .w-78 { width: 78%; }
+
+    .button {
+      width: 190px;
+      height: 46px;
+      margin-top: 1rem;
+      background: #1f54f5;
+    }
+
+    .button-secondary {
+      width: 160px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+    }
+
+    .skeleton-panel,
+    .skeleton-card {
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .skeleton-panel-header {
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .skeleton-code {
+      display: grid;
+      gap: 0.8rem;
+      padding: 1.5rem;
+      background: #111827;
+    }
+
+    .skeleton-code .skeleton-block {
+      height: 16px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .skeleton-heading {
+      max-width: 740px;
+      margin-bottom: 2.5rem;
+    }
+
+    .skeleton-cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skeleton-card {
+      min-height: 190px;
+      padding: 1.5rem;
+      align-content: start;
+    }
+
+    @keyframes shimmer {
+      100% { transform: translateX(100%); }
+    }
+
+    @media (max-width: 980px) {
+      .skeleton-grid,
+      .skeleton-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .skeleton-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .skeleton-container { padding: 0 1rem; }
+      .skeleton-hero { padding: 3rem 0; }
+      .title { height: 40px; }
+      .skeleton-actions,
+      .button { width: 100%; }
+      .skeleton-actions { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-  <app>loading</app>
+  <app>
+    <div class="app-skeleton" aria-label="Chargement de l'application" aria-busy="true">
+      <header class="skeleton-header">
+        <div class="skeleton-container">
+          <div class="skeleton-brand">
+            <span class="skeleton-logo">A</span>
+            <span>Angular Router Explorer</span>
+          </div>
+          <nav class="skeleton-nav" aria-hidden="true">
+            <span class="skeleton-block"></span>
+            <span class="skeleton-block"></span>
+            <span class="skeleton-block"></span>
+            <span class="skeleton-block"></span>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="skeleton-hero">
+          <div class="skeleton-container skeleton-grid">
+            <div class="skeleton-stack" aria-hidden="true">
+              <div class="skeleton-block pill"></div>
+              <div class="skeleton-block title"></div>
+              <div class="skeleton-block title w-84"></div>
+              <div class="skeleton-block text"></div>
+              <div class="skeleton-block text"></div>
+              <div class="skeleton-block text w-78"></div>
+              <div class="skeleton-actions">
+                <div class="skeleton-block button"></div>
+                <div class="skeleton-block button button-secondary"></div>
+              </div>
+            </div>
+
+            <article class="skeleton-panel" aria-hidden="true">
+              <div class="skeleton-panel-header">
+                <div class="skeleton-block pill"></div>
+              </div>
+              <div class="skeleton-code">
+                <div class="skeleton-block w-78"></div>
+                <div class="skeleton-block"></div>
+                <div class="skeleton-block w-84"></div>
+                <div class="skeleton-block"></div>
+                <div class="skeleton-block w-78"></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="skeleton-section">
+          <div class="skeleton-container">
+            <div class="skeleton-stack skeleton-heading" aria-hidden="true">
+              <div class="skeleton-block pill"></div>
+              <div class="skeleton-block title w-84"></div>
+              <div class="skeleton-block text"></div>
+              <div class="skeleton-block text w-78"></div>
+            </div>
+
+            <div class="skeleton-cards" aria-hidden="true">
+              <article class="skeleton-card skeleton-stack">
+                <div class="skeleton-block text w-78"></div>
+                <div class="skeleton-block text"></div>
+                <div class="skeleton-block text"></div>
+              </article>
+              <article class="skeleton-card skeleton-stack">
+                <div class="skeleton-block text w-78"></div>
+                <div class="skeleton-block text"></div>
+                <div class="skeleton-block text"></div>
+              </article>
+              <article class="skeleton-card skeleton-stack">
+                <div class="skeleton-block text w-78"></div>
+                <div class="skeleton-block text"></div>
+                <div class="skeleton-block text"></div>
+              </article>
+              <article class="skeleton-card skeleton-stack">
+                <div class="skeleton-block text w-78"></div>
+                <div class="skeleton-block text"></div>
+                <div class="skeleton-block text"></div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </app>
 </body>
 </html>
